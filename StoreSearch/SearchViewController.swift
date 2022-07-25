@@ -20,6 +20,7 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.becomeFirstResponder()
         //MARK: - Nib/Xib Registration
         var cellNib = UINib(nibName: Constants.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: Constants.CellIdentifiers.searchResultCell)

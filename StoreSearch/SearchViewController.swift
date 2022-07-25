@@ -23,6 +23,8 @@ class SearchViewController: UIViewController {
         //MARK: - Nib/Xib Registration
         var cellNib = UINib(nibName: Constants.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: Constants.CellIdentifiers.searchResultCell)
+        cellNib = UINib(nibName: Constants.CellIdentifiers.nothingFoundCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: Constants.CellIdentifiers.nothingFoundCell)
     }
 
 
@@ -33,7 +35,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchResults = []
-        if searchBar.text! != "the police" {
+        if searchBar.text! != "The police" {
             for i in 0...2 {
                 let searchResult = SearchResult()
                 searchResult.name = String(format: "Fake result %d for", i)
@@ -63,17 +65,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "SearchResultCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchResultCell
         if searchResults.count == 0 {
-            cell.nameLabel.text = "Nothing Found"
-            cell.artistNameLabel.text = ""
+            return tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.nothingFoundCell, for: indexPath)
         } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
+
             let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.name
             cell.artistNameLabel.text = searchResult.artistName
+            return cell
         }
-        return cell
     }
     
     //fix tapping on a row and become selected and stay selected didSelectRowAt, deselects row and willSelectRowAt make sure we can only select row when we have actual search results

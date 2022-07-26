@@ -43,6 +43,7 @@ extension SearchViewController: UISearchBarDelegate {
             print("URL: \(url) ")
             if let data = performStoreRequest(with: url) {
                 searchResults = parse(data: data)
+                searchResults.sort(by: <) //{ $0 > $1 }
             } else {
                 showNetworkError()
             }
@@ -75,7 +76,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
             let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.name
-            cell.artistNameLabel.text = searchResult.artistName
+            if searchResult.artist.isEmpty {
+                cell.artistNameLabel.text = "Unknown"
+            } else {
+                cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artist, searchResult.type)
+            }
             return cell
         }
     }
@@ -133,4 +138,14 @@ extension SearchViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+}
+
+// MARK: - Code for testing comparations and reduce closure
+
+func < (lhs: SearchResult, rhs: SearchResult) -> Bool {
+    return lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
+}
+
+func > (lhs: SearchResult, rhs: SearchResult) -> Bool {
+    return lhs.name.localizedStandardCompare(rhs.name) == .orderedDescending
 }

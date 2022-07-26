@@ -34,18 +34,20 @@ class SearchViewController: UIViewController {
 //MARK: - SearchView Extension
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        searchResults = []
-        if searchBar.text! != "The police" {
-            for i in 0...2 {
-                let searchResult = SearchResult()
-                searchResult.name = String(format: "Fake result %d for", i)
-                searchResult.artistName = searchBar.text!
-                searchResults.append(searchResult)
+        if !searchBar.text!.isEmpty {
+            searchBar.resignFirstResponder()
+            hasSearched = true
+            searchResults = []
+            
+            let url = iTunesUrl(searchText: searchBar.text!)
+            print("URL: \(url) ")
+            if let data = performStoreRequest(with: url) {
+                searchResults = parse(data: data)
+            } else {
+                showNetworkError()
             }
+            tableView.reloadData()
         }
-        hasSearched = true
-        tableView.reloadData()
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -89,5 +91,46 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else  {
             return indexPath
         }
+    }
+}
+
+//MARK: - Helper Methods - Networking
+
+func iTunesUrl(searchText: String) -> URL {
+    let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@", encodedText)
+    let url = URL(string: urlString)
+    return url!
+}
+
+func performStoreRequest(with url: URL) -> Data? {
+    do {
+        return try Data(contentsOf: url)
+    } catch {
+        print("Download Error: \(error.localizedDescription)")
+        return nil
+    }
+}
+
+func parse(data: Data) -> [SearchResult] {
+    do {
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(ResultArray.self, from: data)
+        return result.results
+    } catch {
+        print("JSON Error: \(error)")
+        return []
+    }
+}
+
+
+// MARK: - Error Alert Notification
+
+extension SearchViewController {
+    func showNetworkError() {
+        let alert = UIAlertController(title: "Error", message: "There was an error accessing the iTunes Store" + " Please try again", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 }

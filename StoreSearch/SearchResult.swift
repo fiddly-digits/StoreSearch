@@ -13,9 +13,7 @@ class ResultArray: Codable {
 }
 
 class SearchResult: Codable, CustomStringConvertible {
-    var description: String {
-        return "\n Result - Kind: \(kind ?? "none"), Name: \(name), Artist Name: \(artistName ?? "None"), TrackPrice: \(trackPrice ?? 0.0), Currency: \(currency), storeURL: \(storeURL ?? "none"), Genre: \(genre)"
-    }
+    var description: String = ""
     
     var artistName: String? = ""
     var trackName: String? = ""

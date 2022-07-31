@@ -44,19 +44,32 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = []
             
-            let queue = DispatchQueue.global()
             let url = iTunesUrl(searchText: searchBar.text!)
-            queue.async {
-                if let data = performStoreRequest(with: url) {
-                    self.searchResults = parse(data: data)
-                    self.searchResults.sort(by: <)
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: url) { data, response, error in
+//                print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
+                if let error = error {
+                    print("Failure: \(error.localizedDescription)")
+                } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    if let data = data {
+                        self.searchResults = parse(data: data)
+                        self.searchResults.sort(by: <)
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                            self.tableView.reloadData()
+                        }
+                        return
+                    }
+                } else {
                     DispatchQueue.main.async {
+                        self.hasSearched = false
                         self.isLoading = false
                         self.tableView.reloadData()
+                        self.showNetworkError()
                     }
-                    return
                 }
             }
+            dataTask.resume()
         }
     }
     
@@ -124,15 +137,6 @@ func iTunesUrl(searchText: String) -> URL {
     let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200", encodedText)
     let url = URL(string: urlString)
     return url!
-}
-
-func performStoreRequest(with url: URL) -> Data? {
-    do {
-        return try Data(contentsOf: url)
-    } catch {
-        print("Download Error: \(error.localizedDescription)")
-        return nil
-    }
 }
 
 func parse(data: Data) -> [SearchResult] {

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-IN-LIB">
-                                <rect key="frame" x="0.0" y="51" width="375" height="616"/>
+                                <rect key="frame" x="0.0" y="95" width="375" height="572"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="App name, artist, song, album, e-book" translatesAutoresizingMaskIntoConstraints="NO" id="sIK-Ni-DhG">
@@ -26,27 +26,52 @@
                                 <color key="barTintColor" name="SearchBar"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="r2q-Ld-xEM">
+                                <rect key="frame" x="0.0" y="51" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="qHk-fR-s1W">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="IUG-de-xGD">
+                                            <rect key="frame" x="16" y="5.5" width="343" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="All"/>
+                                                <segment title="Music"/>
+                                                <segment title="Software"/>
+                                                <segment title="E-books"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Wtp-6K-SSx"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                                <toolbarAppearance key="standardAppearance"/>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ajz-IN-LIB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="16V-0Y-NiQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ajz-IN-LIB" secondAttribute="bottom" id="Fko-hY-EOC"/>
-                            <constraint firstItem="sIK-Ni-DhG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aAc-c7-UG7"/>
-                            <constraint firstItem="sIK-Ni-DhG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="c2p-dX-vKX"/>
-                            <constraint firstItem="Ajz-IN-LIB" firstAttribute="top" secondItem="sIK-Ni-DhG" secondAttribute="bottom" id="utl-Rh-5RK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ajz-IN-LIB" secondAttribute="trailing" id="wEh-Mr-lAC"/>
-                            <constraint firstItem="sIK-Ni-DhG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xTp-cl-faI"/>
+                            <constraint firstItem="r2q-Ld-xEM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8Jm-j2-ebq"/>
+                            <constraint firstItem="Ajz-IN-LIB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Cdg-WU-9ao"/>
+                            <constraint firstItem="Ajz-IN-LIB" firstAttribute="top" secondItem="r2q-Ld-xEM" secondAttribute="bottom" id="E8D-nt-5kR"/>
+                            <constraint firstItem="sIK-Ni-DhG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EE4-lo-iHc"/>
+                            <constraint firstItem="sIK-Ni-DhG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Mhd-Mu-uaH"/>
+                            <constraint firstItem="r2q-Ld-xEM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PMY-mv-UJ8"/>
+                            <constraint firstItem="sIK-Ni-DhG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oXr-kd-YsC"/>
+                            <constraint firstItem="Ajz-IN-LIB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pCN-IK-XsN"/>
+                            <constraint firstItem="Ajz-IN-LIB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xnz-m5-dxx"/>
+                            <constraint firstItem="r2q-Ld-xEM" firstAttribute="top" secondItem="sIK-Ni-DhG" secondAttribute="bottom" id="ziK-2c-3TB"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="sIK-Ni-DhG" id="laG-by-LYO"/>
+                        <outlet property="segmentedControl" destination="IUG-de-xGD" id="2hf-FM-o29"/>
                         <outlet property="tableView" destination="Ajz-IN-LIB" id="yCs-yu-H1G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="30" y="84"/>
+            <point key="canvasLocation" x="29.600000000000001" y="83.208395802098963"/>
         </scene>
     </scenes>
     <resources>

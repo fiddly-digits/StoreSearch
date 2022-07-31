@@ -11,6 +11,7 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var searchResults = [SearchResult]()
     var hasSearched = false
@@ -31,13 +32,15 @@ class SearchViewController: UIViewController {
         cellNib = UINib(nibName: Constants.CellIdentifiers.loadingCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: Constants.CellIdentifiers.loadingCell)
     }
-
-
 }
 
 //MARK: - SearchView Extension
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             dataTask?.cancel()
@@ -46,12 +49,12 @@ extension SearchViewController: UISearchBarDelegate {
             hasSearched = true
             searchResults = []
             
-            let url = iTunesUrl(searchText: searchBar.text!)
+            let url = iTunesUrl(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             let session = URLSession.shared
             dataTask = session.dataTask(with: url) { data, response, error in
 //                print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
                 if let error = error as NSError?, error.code == -999 {
-                    print("Failure: \(error.localizedDescription)")
+                    print("Failuree: \(error.localizedDescription)")
                     return // cancel search
                 } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     if let data = data {
@@ -79,6 +82,15 @@ extension SearchViewController: UISearchBarDelegate {
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
+    }
+}
+
+// MARK: Segmented Control
+
+extension SearchViewController {
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        print("Segment Changed: \(sender.selectedSegmentIndex)")
+        performSearch()
     }
 }
 
@@ -136,9 +148,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - Helper Methods - Networking
 
-func iTunesUrl(searchText: String) -> URL {
+func iTunesUrl(searchText: String, category: Int) -> URL {
+    let kind: String
+    switch category {
+    case 1: kind = "musicTrack"
+    case 2: kind = "software"
+    case 3: kind = "ebook"
+    default: kind = ""
+    }
+    
     let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200", encodedText)
+    let urlString = String(format: "https://itunes.apple.com/search?term=%@&limit=200&entity=\(kind)", encodedText)
     let url = URL(string: urlString)
     return url!
 }

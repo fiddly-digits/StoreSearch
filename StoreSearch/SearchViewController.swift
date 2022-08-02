@@ -24,6 +24,9 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.becomeFirstResponder()
+        
+        listenForFontChanges()
+        
         //MARK: - Nib/Xib Registration
         var cellNib = UINib(nibName: Constants.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: Constants.CellIdentifiers.searchResultCell)
@@ -201,6 +204,17 @@ extension SearchViewController {
             let indexPath = sender as! IndexPath
             let searchResult = searchResults[indexPath.row]
             detailViewController.searchResult = searchResult
+        }
+    }
+}
+
+// MARK: - Listen for font change
+extension SearchViewController {
+    func listenForFontChanges() {
+        NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+            guard let weakSelf = self else { return }
+            weakSelf.tableView.reloadData()
+//            print("Observer executed")
         }
     }
 }

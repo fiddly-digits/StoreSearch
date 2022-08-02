@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
 
     // Dealloc Image to memory save
     deinit {
-        print("deinit: \(self)")
+//        print("deinit: \(self)")
         downloadTask?.cancel()
     }
 
@@ -94,6 +94,8 @@ extension DetailViewController {
         
         priceButton.setTitle(priceText, for: .normal)
         
+        priceButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        
         // Show Image
         if let largeURL = URL(string: searchResult.imageLarge) {
             downloadTask = artworkImageView.loadImage(url: largeURL)
@@ -101,6 +103,4 @@ extension DetailViewController {
     }
 
 }
-
-
 

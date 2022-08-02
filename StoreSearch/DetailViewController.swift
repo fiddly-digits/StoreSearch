@@ -31,6 +31,13 @@ class DetailViewController: UIViewController {
         if searchResult != nil {
             updateUI()
         }
+        addGradient()
+    }
+    
+    // Setting the transitioning delegate for animation
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        transitioningDelegate = self
     }
 
     // Dealloc Image to memory save
@@ -101,6 +108,24 @@ extension DetailViewController {
             downloadTask = artworkImageView.loadImage(url: largeURL)
         }
     }
+    
+    func addGradient() {
+        view.backgroundColor = UIColor.clear
+        let dimmingView = GradientView(frame: CGRect.zero)
+        dimmingView.frame = view.bounds
+        view.insertSubview(dimmingView, at: 0)
+    }
 
+}
+
+// MARK: - Bounce Animation: Controller transition Delegate
+extension DetailViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BounceAnimationController()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutAnimationController()
+    }
 }
 

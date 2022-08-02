@@ -12,6 +12,9 @@
 		AA12131B288F46E8002D0B6F /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA12131A288F46E8002D0B6F /* NothingFoundCell.xib */; };
 		AA12131D288F47BD002D0B6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA12131C288F47BD002D0B6F /* Constants.swift */; };
 		AA4700702893195400FB41C7 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA47006F2893195400FB41C7 /* LoadingCell.xib */; };
+		AAF640F02899D52200172908 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF640EF2899D52200172908 /* GradientView.swift */; };
+		AAF640F22899DA5A00172908 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF640F12899DA5A00172908 /* BounceAnimationController.swift */; };
+		AAF640F42899DEAA00172908 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF640F32899DEAA00172908 /* SlideOutAnimationController.swift */; };
 		AAF9CDEB288A1E5700595DC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF9CDEA288A1E5700595DC5 /* AppDelegate.swift */; };
 		AAF9CDED288A1E5700595DC5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF9CDEC288A1E5700595DC5 /* SceneDelegate.swift */; };
 		AAF9CDEF288A1E5700595DC5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF9CDEE288A1E5700595DC5 /* SearchViewController.swift */; };
@@ -28,6 +31,9 @@
 		AA12131A288F46E8002D0B6F /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		AA12131C288F47BD002D0B6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AA47006F2893195400FB41C7 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		AAF640EF2899D52200172908 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		AAF640F12899DA5A00172908 /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
+		AAF640F32899DEAA00172908 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		AAF9CDE7288A1E5700595DC5 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAF9CDEA288A1E5700595DC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAF9CDEC288A1E5700595DC5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 				AA47006F2893195400FB41C7 /* LoadingCell.xib */,
 				AAFD987A28972B1F005D0583 /* UIImageView+DownloadImage.swift */,
 				AAFD987C289895C0005D0583 /* DetailViewController.swift */,
+				AAF640EF2899D52200172908 /* GradientView.swift */,
+				AAF640F12899DA5A00172908 /* BounceAnimationController.swift */,
+				AAF640F32899DEAA00172908 /* SlideOutAnimationController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -165,10 +174,13 @@
 				AAF9CDEF288A1E5700595DC5 /* SearchViewController.swift in Sources */,
 				AAF9CDEB288A1E5700595DC5 /* AppDelegate.swift in Sources */,
 				AAF9CDFF288B33C700595DC5 /* SearchResult.swift in Sources */,
+				AAF640F22899DA5A00172908 /* BounceAnimationController.swift in Sources */,
 				AAF9CDED288A1E5700595DC5 /* SceneDelegate.swift in Sources */,
 				AA121317288F41C3002D0B6F /* SearchResultCell.swift in Sources */,
 				AA12131D288F47BD002D0B6F /* Constants.swift in Sources */,
+				AAF640F42899DEAA00172908 /* SlideOutAnimationController.swift in Sources */,
 				AAFD987D289895C0005D0583 /* DetailViewController.swift in Sources */,
+				AAF640F02899D52200172908 /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,22 +20,22 @@ class DetailViewController: UIViewController {
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
     
-//    enum AnimationStyle {
-//        case slide
-//        case fade
-//    }
-//
-//    var dismissStyle = AnimationStyle.fade
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+
+    var dismissStyle = AnimationStyle.fade
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         popupView.layer.cornerRadius = 10
-//        addGradient()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
+        addGradient().addGestureRecognizer(gestureRecognizer)
         if searchResult != nil {
             updateUI()
         }
@@ -60,7 +60,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController {
     
     @IBAction func close() {
-//         dismissStyle = .slide
+        dismissStyle = .slide
         dismiss(animated: true, completion: nil)
     }
     
@@ -73,9 +73,10 @@ extension DetailViewController {
 
 
  // MARK: - Gesture Recognizer Delegate - click outside the view, and it closes the view.
+// TODO: - First OR is unnecesary, but i'll wait to fix it.
 extension DetailViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        (touch.view == self.view)
+        (touch.view == self.view) || (touch.view?.subviews.startIndex == self.view.subviews.startIndex)
     }
 }
 
@@ -117,11 +118,12 @@ extension DetailViewController {
         }
     }
     
-    func addGradient() {
+    func addGradient() -> UIView {
         view.backgroundColor = UIColor.clear
         let dimmingView = GradientView(frame: CGRect.zero)
         dimmingView.frame = view.bounds
         view.insertSubview(dimmingView, at: 0)
+        return dimmingView
     }
 
 }
@@ -133,7 +135,12 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideOutAnimationController()
+        switch dismissStyle {
+        case .slide:
+            return SlideOutAnimationController()
+        case .fade:
+            return FadeOutAnimationController()
+        }
     }
 }
 

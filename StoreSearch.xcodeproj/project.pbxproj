@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA113D19289C74EF00ECB552 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D18289C74EF00ECB552 /* LandscapeViewController.swift */; };
+		AA113D1B289DD0D500ECB552 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D1A289DD0D500ECB552 /* FadeOutAnimationController.swift */; };
 		AA121315288F377F002D0B6F /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA121314288F377F002D0B6F /* SearchResultCell.xib */; };
 		AA121317288F41C3002D0B6F /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121316288F41C3002D0B6F /* SearchResultCell.swift */; };
 		AA12131B288F46E8002D0B6F /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA12131A288F46E8002D0B6F /* NothingFoundCell.xib */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		AA113D18289C74EF00ECB552 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
+		AA113D1A289DD0D500ECB552 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 		AA121314288F377F002D0B6F /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		AA121316288F41C3002D0B6F /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		AA12131A288F46E8002D0B6F /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				AAF640F12899DA5A00172908 /* BounceAnimationController.swift */,
 				AAF640F32899DEAA00172908 /* SlideOutAnimationController.swift */,
 				AA113D18289C74EF00ECB552 /* LandscapeViewController.swift */,
+				AA113D1A289DD0D500ECB552 /* FadeOutAnimationController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				AA121317288F41C3002D0B6F /* SearchResultCell.swift in Sources */,
 				AA12131D288F47BD002D0B6F /* Constants.swift in Sources */,
 				AAF640F42899DEAA00172908 /* SlideOutAnimationController.swift in Sources */,
+				AA113D1B289DD0D500ECB552 /* FadeOutAnimationController.swift in Sources */,
 				AAFD987D289895C0005D0583 /* DetailViewController.swift in Sources */,
 				AA113D19289C74EF00ECB552 /* LandscapeViewController.swift in Sources */,
 				AAF640F02899D52200172908 /* GradientView.swift in Sources */,

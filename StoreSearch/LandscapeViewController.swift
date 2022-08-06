@@ -20,7 +20,9 @@ class LandscapeViewController: UIViewController {
         super.viewDidLoad()
         removeConstraints()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+        scrollView.delegate = self
         configureScrollView()
+        pageControl.numberOfPages = 0
 
         // Do any additional setup after loading the view.
     }
@@ -36,6 +38,14 @@ class LandscapeViewController: UIViewController {
         }
     }
 
+}
+
+extension LandscapeViewController {
+    @IBAction  func pageChanged(_ sender: UIPageControl) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
+            self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
+        }, completion: nil)
+    }
 }
 
 // MARK: - Helper Methods
@@ -60,6 +70,7 @@ extension LandscapeViewController {
     }
 }
 
+// MARK: - Tile Buttons config
 extension LandscapeViewController {
     private func tileButtons(_ searchResults: [SearchResult]) {
         let itemWidth: CGFloat = 94
@@ -89,6 +100,7 @@ extension LandscapeViewController {
         var column = 0
         var x = marginX
         for (index, _) in searchResults.enumerated() {
+            print("Number of squares: \(searchResults.count)")
             let button = UIButton(type: .system)
             button.backgroundColor = UIColor.white
             button.setTitle("\(index)", for: .normal)
@@ -113,6 +125,18 @@ extension LandscapeViewController {
         let numPages = 1 + (searchResults.count - 1) / buttonsPerPage
         scrollView.contentSize = CGSize(width: CGFloat(numPages) * viewWidth, height: scrollView.bounds.size.height)
         print("Number of pages: \(numPages)")
+        pageControl.numberOfPages = numPages
+        pageControl.currentPage = 0
         
     }
 }
+ 
+// MARK: - UIScrollViewDelegate
+extension LandscapeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = scrollView.bounds.size.width
+        let page = Int((scrollView.contentOffset.x + width / 2) / width)
+        pageControl.currentPage = page
+    }
+}
+

@@ -64,6 +64,7 @@ extension SearchViewController: UISearchBarDelegate {
                     self.showNetworkError()
                 }
                 self.tableView.reloadData()
+                self.landscapeVC?.searchResultsRecived()
             }
             tableView.reloadData()
             searchBar.resignFirstResponder()
@@ -218,6 +219,10 @@ extension SearchViewController {
             coordinator.animate { _ in
                 controller.view.alpha = 0
                 self.searchBar.becomeFirstResponder()
+                //deallocates view when rotate back to portrait
+                if self.presentedViewController != nil {
+                    self.dismiss(animated: true, completion: nil)
+                }
             } completion: { _ in
                 controller.view.removeFromSuperview()
                 controller.removeFromParent()

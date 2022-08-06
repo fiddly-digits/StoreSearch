@@ -10,6 +10,7 @@
 		AA113D19289C74EF00ECB552 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D18289C74EF00ECB552 /* LandscapeViewController.swift */; };
 		AA113D1B289DD0D500ECB552 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D1A289DD0D500ECB552 /* FadeOutAnimationController.swift */; };
 		AA113D1F289EDD6700ECB552 /* UIImage + Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D1E289EDD6700ECB552 /* UIImage + Resize.swift */; };
+		AA113D21289EE1AC00ECB552 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D20289EE1AC00ECB552 /* Search.swift */; };
 		AA121315288F377F002D0B6F /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA121314288F377F002D0B6F /* SearchResultCell.xib */; };
 		AA121317288F41C3002D0B6F /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121316288F41C3002D0B6F /* SearchResultCell.swift */; };
 		AA12131B288F46E8002D0B6F /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA12131A288F46E8002D0B6F /* NothingFoundCell.xib */; };
@@ -32,6 +33,7 @@
 		AA113D18289C74EF00ECB552 /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		AA113D1A289DD0D500ECB552 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 		AA113D1E289EDD6700ECB552 /* UIImage + Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Resize.swift"; sourceTree = "<group>"; };
+		AA113D20289EE1AC00ECB552 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		AA121314288F377F002D0B6F /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		AA121316288F41C3002D0B6F /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		AA12131A288F46E8002D0B6F /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				AAF9CDEA288A1E5700595DC5 /* AppDelegate.swift */,
 				AAF9CDEC288A1E5700595DC5 /* SceneDelegate.swift */,
 				AAF9CDEE288A1E5700595DC5 /* SearchViewController.swift */,
+				AA113D20289EE1AC00ECB552 /* Search.swift */,
 				AAF9CDFE288B33C700595DC5 /* SearchResult.swift */,
 				AAF9CDF0288A1E5700595DC5 /* Main.storyboard */,
 				AAF9CDF3288A1E5900595DC5 /* Assets.xcassets */,
@@ -191,6 +194,7 @@
 				AA113D1B289DD0D500ECB552 /* FadeOutAnimationController.swift in Sources */,
 				AAFD987D289895C0005D0583 /* DetailViewController.swift in Sources */,
 				AA113D19289C74EF00ECB552 /* LandscapeViewController.swift in Sources */,
+				AA113D21289EE1AC00ECB552 /* Search.swift in Sources */,
 				AAF640F02899D52200172908 /* GradientView.swift in Sources */,
 				AA113D1F289EDD6700ECB552 /* UIImage + Resize.swift in Sources */,
 			);

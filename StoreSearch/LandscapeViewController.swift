@@ -15,6 +15,7 @@ class LandscapeViewController: UIViewController {
     
     var searchResults = [SearchResult]()
     private var firstTime = true
+    private var downloads = [URLSessionDownloadTask]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,14 @@ class LandscapeViewController: UIViewController {
         if firstTime {
             firstTime = false
             tileButtons(searchResults)
+        }
+    }
+    
+    // Deinit for stop the download for any button whose image was pending.
+    deinit {
+        print("Deinit \(self)")
+        for task in downloads {
+            task.cancel()
         }
     }
 
@@ -99,11 +108,11 @@ extension LandscapeViewController {
         var row = 0
         var column = 0
         var x = marginX
-        for (index, _) in searchResults.enumerated() {
+        for (_, result) in searchResults.enumerated() {
             print("Number of squares: \(searchResults.count)")
-            let button = UIButton(type: .system)
-            button.backgroundColor = UIColor.white
-            button.setTitle("\(index)", for: .normal)
+            let button = UIButton(type: .custom)
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
+            downloadImage(for: result, andPlaceOn: button)
             
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row) * itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
             
@@ -137,6 +146,27 @@ extension LandscapeViewController: UIScrollViewDelegate {
         let width = scrollView.bounds.size.width
         let page = Int((scrollView.contentOffset.x + width / 2) / width)
         pageControl.currentPage = page
+    }
+}
+
+extension LandscapeViewController {
+    private func downloadImage(for searchResult: SearchResult, andPlaceOn button: UIButton) {
+        if let url = URL(string: searchResult.imageSmall) {
+            let task = URLSession.shared.downloadTask(with: url){
+                [weak button] url, _, error in
+                if error == nil, let url = url,
+                   let data = try? Data(contentsOf: url),
+                   let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        if let button = button {
+                            button.setBackgroundImage(image.resized(withBounds: CGSize(width: button.bounds.width, height: button.bounds.height)), for: .normal)
+                        }
+                    }
+                }
+            }
+            task.resume()
+            downloads.append(task)
+        }
     }
 }
 

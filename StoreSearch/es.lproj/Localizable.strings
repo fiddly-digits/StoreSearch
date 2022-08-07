@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  StoreSearch
+
+  Created by Roberto Cruz on 07/08/22.
+  
+*/
+
+/* Localized kind: Album */
+"Album" = "Album";
+
+/* Localized kind: Software */
+"App" = "App";
+
+/* Localized kind: Audio Book */
+"Audio Book" = "Audiolibro";
+
+/* Localized kind: Book */
+"Book" = "Libro";
+
+/* Localized kind: E-Book */
+"E-Book" = "E-Book";
+
+/* Localized kind: Feature Movie */
+"Movie" = "Pelicula";
+
+/* Localized kind: Music Video */
+"Music Video" = "Video Musical";
+
+/* Localized kind: Podcast */
+"Podcast" = "Podcast";
+
+/* Localized kind: Song */
+"Song" = "Cancion";
+
+/* Localized kind: TV Episode */
+"TV Episode" = "Episodio";
+
+/* Error alert: message */
+"There was an error accessing the iTunes Store. Please try again" = "Hubo un error en la iTunes Store. Por favor, intenta otra vez.";
+
+/* Artist Name: Unknown */
+"Unknown" = "Desconocido";
+
+/* Price Text: Free */
+"Free" = "Gratis";
+
+/* Nothing Found Landscape: Nothing Found */
+"Nothing Found" = "No Encontrado";

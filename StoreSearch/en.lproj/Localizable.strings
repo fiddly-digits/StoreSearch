@@ -44,3 +44,6 @@
 
 /* Nothing Found Landscape: Nothing Found */
 "Nothing Found" = "Nothing Found";
+
+/* split view primary button */
+"Search" = "Search";

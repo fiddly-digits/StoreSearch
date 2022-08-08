@@ -47,3 +47,6 @@
 
 /* Nothing Found Landscape: Nothing Found */
 "Nothing Found" = "No Encontrado";
+
+/* split view primary button */
+"Search" = "Busqueda";

@@ -15,15 +15,20 @@ class SearchViewController: UIViewController {
     
     private let search = Search()
     var landscapeVC: LandscapeViewController?
+    weak var splitViewDetail: DetailViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
-        searchBar.becomeFirstResponder()
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            searchBar.becomeFirstResponder()
+        }
+        
         
         listenForFontChanges()
+        title = NSLocalizedString("Search", comment: "split view primary button")
         
         //MARK: - Nib/Xib Registration
         var cellNib = UINib(nibName: Constants.CellIdentifiers.searchResultCell, bundle: nil)
@@ -125,8 +130,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     //fix tapping on a row and become selected and stay selected didSelectRowAt, deselects row and willSelectRowAt make sure we can only select row when we have actual search results
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        searchBar.resignFirstResponder()
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        } else {
+            if case .results(let list) = search.state {
+                splitViewDetail?.searchResult = list[indexPath.row]
+            }
+            if splitViewController?.displayMode != .oneBesideSecondary {
+                hidePrimaryPane()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -229,6 +244,18 @@ extension SearchViewController {
                 self.landscapeVC = nil
             }
         }
+    }
+}
+
+// MARK: - iPAD
+extension SearchViewController {
+    private func hidePrimaryPane() {
+        UIView.animate(withDuration: 0.25) {
+            self.splitViewController?.preferredDisplayMode = .secondaryOnly
+        } completion: { _ in
+            self.splitViewController?.preferredDisplayMode = .automatic
+        }
+
     }
 }
 

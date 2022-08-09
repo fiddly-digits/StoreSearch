@@ -14,6 +14,7 @@
 		AA113D2728A026E200ECB552 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA113D2928A026E200ECB552 /* NothingFoundCell.xib */; };
 		AA113D2B28A0284700ECB552 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA113D2D28A0284700ECB552 /* LoadingCell.xib */; };
 		AA113D3428A02CDA00ECB552 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA113D3628A02CDA00ECB552 /* Localizable.strings */; };
+		AA113D3928A1D04900ECB552 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113D3828A1D04900ECB552 /* MenuViewController.swift */; };
 		AA121315288F377F002D0B6F /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA121314288F377F002D0B6F /* SearchResultCell.xib */; };
 		AA121317288F41C3002D0B6F /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121316288F41C3002D0B6F /* SearchResultCell.swift */; };
 		AA12131D288F47BD002D0B6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA12131C288F47BD002D0B6F /* Constants.swift */; };
@@ -42,6 +43,7 @@
 		AA113D3128A0292200ECB552 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		AA113D3528A02CDA00ECB552 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA113D3728A02E8500ECB552 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA113D3828A1D04900ECB552 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		AA121314288F377F002D0B6F /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		AA121316288F41C3002D0B6F /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		AA12131C288F47BD002D0B6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				AAF9CDEE288A1E5700595DC5 /* SearchViewController.swift */,
 				AAFD987C289895C0005D0583 /* DetailViewController.swift */,
 				AA113D18289C74EF00ECB552 /* LandscapeViewController.swift */,
+				AA113D3828A1D04900ECB552 /* MenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				AAF640F22899DA5A00172908 /* BounceAnimationController.swift in Sources */,
 				AAF9CDED288A1E5700595DC5 /* SceneDelegate.swift in Sources */,
 				AA121317288F41C3002D0B6F /* SearchResultCell.swift in Sources */,
+				AA113D3928A1D04900ECB552 /* MenuViewController.swift in Sources */,
 				AA12131D288F47BD002D0B6F /* Constants.swift in Sources */,
 				AAF640F42899DEAA00172908 /* SlideOutAnimationController.swift in Sources */,
 				AA113D1B289DD0D500ECB552 /* FadeOutAnimationController.swift in Sources */,

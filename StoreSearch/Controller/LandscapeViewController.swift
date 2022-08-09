@@ -150,8 +150,8 @@ extension LandscapeViewController {
         var rowsPerPage = 0
         var marginX: CGFloat = 0
         var marginY: CGFloat = 0
-        let viewWidth = scrollView.bounds.size.width
-        let viewHeight = scrollView.bounds.size.height
+        let viewWidth = UIScreen.main.bounds.size.width
+        let viewHeight = UIScreen.main.bounds.size.height
         
         columnsPerPage = Int(viewWidth / itemWidth)
         rowsPerPage = Int(viewHeight / itemHeight)
@@ -243,6 +243,7 @@ extension LandscapeViewController {
                 let detailViewController = segue.destination as! DetailViewController
                 let searchResult = list[(sender as! UIButton).tag - 2000]
                 detailViewController.searchResult = searchResult
+                detailViewController.isPopUp = true
             }
         }
     }

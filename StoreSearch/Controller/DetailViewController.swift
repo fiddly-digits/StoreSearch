@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class DetailViewController: UIViewController {
 
@@ -25,7 +26,7 @@ class DetailViewController: UIViewController {
         }
     }
     var downloadTask: URLSessionDownloadTask?
-    private var isPopUp = false
+    var isPopUp = false
     
     enum AnimationStyle {
         case slide
@@ -47,6 +48,7 @@ class DetailViewController: UIViewController {
         } else {
             view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
             popupView.isHidden = true
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showPopover(_:)))
         }
 
         if searchResult != nil {
@@ -130,7 +132,9 @@ extension DetailViewController {
             downloadTask = artworkImageView.loadImage(url: largeURL)
         }
         
-        popupView.isHidden = false
+        UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve) {
+            self.popupView.isHidden = false
+        }
     }
     
     func addGradient() -> UIView {
@@ -159,3 +163,32 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
+// MARK: - Popover Menu & Mail Compose View Delegate
+extension DetailViewController: MenuViewControllerDelegate, MFMailComposeViewControllerDelegate {
+    @objc func showPopover(_ sender: UIBarButtonItem) {
+        guard let popover = storyboard?.instantiateViewController(withIdentifier: "PopoverView") as? MenuViewController else { return }
+        popover.modalPresentationStyle = .popover
+        if let ppc = popover.popoverPresentationController {
+            ppc.barButtonItem = sender
+        }
+        popover.delegate = self
+        present(popover, animated: true, completion: nil)
+    }
+    
+    // MARK: - Shows mail compose sheet, but doesnt work on simulator
+    func menuViewControllerSendEmail(_ controller: MenuViewController) {
+        dismiss(animated: true){
+            if MFMailComposeViewController.canSendMail() {
+                let controller = MFMailComposeViewController()
+                controller.setSubject(NSLocalizedString("Support Request", comment: "Email Subject"))
+                controller.setToRecipients(["support@fiddlydigitsapps.com"])
+                controller.mailComposeDelegate = self
+                self.present(controller, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+    }
+}
